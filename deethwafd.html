@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilda Haligtree</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background: radial-gradient(circle, #fdf4c1, #e2c79e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .scroll-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 600px;
+        }
+
+        .scroll {
+            position: relative;
+            background: #f8e8c3;
+            border: 2px solid #d1b583;
+            border-radius: 15px;
+            padding: 20px 40px;
+            text-align: justify;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            color: #4a351f;
+            animation: scroll-drop 1s ease forwards;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            max-height: 600px;
+            width: 100%;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            margin-left: 15px;
+        }
+
+        @keyframes scroll-drop {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .button-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #d1b583;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 10px;
+            color: #4a351f;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #a88c63;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="scroll" id="scroll-container"></div>
+    </div>
+    <div class="button-container" id="button-container">
+        <button class="btn" onclick="window.location.href='concha.html'">
+            Quando o som puder ser visto, tudo fica claro.
+        </button>
+    </div>
+
+    <script>
+        function typeText(element, text, speed, callback) {
+            let i = 0;
+            const length = text.length;
+            const interval = setInterval(() => {
+                element.textContent += text[i];
+                i++;
+                if (i === length) {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, speed);
+        }
+
+        function addTextWithLineBreaks() {
+            const scrollContainer = document.getElementById('scroll-container');
+            const lines = [
+                "Aos aventureiros de Haligtree,",
+                "Recebi recentemente uma concha de origens tão enigmática quanto o som que ela emite, acompanhada de um bilhete com instruções claras para que chegasse às mãos competentes dos senhores.",
+                "Não vou mentir, também fui seduzido pela tentação de desvendar o mistério, e que mistério ele realmente é. Algo em seu som me faz acreditar que não se trata apenas de um simples objeto, mas de um convite silencioso para algo maior.",
+                "Ah, meus caros, o tempo é precioso, já devo me despedir, visto que tenho trabalho a fazer. No próximo dies solis, o son das portas se fechando será apenas o começo. Tudu o que vocês conhecem sobre segurança vai ser testado, mas não se preocupem, tudo ficará clarp quando o ouro reluzir.",
+                "Como sempre, a impossível será alcançado, e a grande obra de D. Vinci puder ser minha, antes que sequer saibam o que aconteceu. Cuando puderem, venham ver, pois o que servisto naquela noite é algo que ficar marcado para sempre.",
+                "Cordialmente e esperando ter ajudado,",
+                "Paule Siren"
+            ];
+
+            let currentLine = 0;
+            function typeNextLine() {
+                if (currentLine < lines.length) {
+                    const div = document.createElement('div');
+                    scrollContainer.appendChild(div);
+                    typeText(div, lines[currentLine], 100, () => {
+                        currentLine++;
+                        setTimeout(typeNextLine, 500);
+                    });
+                } else {
+                    document.getElementById('button-container').style.display = 'block';
+                }
+            }
+
+            typeNextLine();
+        }
+
+        addTextWithLineBreaks();
+    </script>
+</body>
+</html>
