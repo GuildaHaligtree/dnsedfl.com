@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagem Interativa</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #fdf4c1, #e2c79e);
+            text-align: center;
+        }
+        .image-container {
+            position: relative;
+            width: 300px;
+            height: auto;
+            border: 10px solid #d1b583;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .caption {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #4a351f;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container" onclick="swapImage()">
+        <img id="displayedImage" src="https://i.imgur.com/TL6PCwP.jpg" alt="Imagem 1">
+    </div>
+    <div id="caption" class="caption">Coloque a concha no ouvido</div>
+
+    <script>
+        let imageState = 0;
+        function swapImage() {
+            const img = document.getElementById("displayedImage");
+            const caption = document.getElementById("caption");
+            if (imageState === 0) {
+                img.src = "https://i.imgur.com/icHrzui.jpg";
+                imageState = 1;
+            } else if (imageState === 1) {
+                img.src = "https://i.imgur.com/dbL5KLW.jpg";
+                caption.style.display = "block";
+                imageState = 2;
+            }
+        }
+    </script>
+</body>
+</html>
